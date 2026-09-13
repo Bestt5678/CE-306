@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="th" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เกมปิดไฟ</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200">
+
+  <!-- ส่วนหัว (Header) -->
+  <header class="w-full max-w-lg mx-auto p-4 mt-4 flex justify-between items-center border-b border-slate-300 dark:border-slate-800">
+    <div>
+      <h1 class="text-2xl font-black tracking-tight text-amber-500">
+        💡 Lights Out
+      </h1>
+      <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+        ปริศนาปิดไฟให้หมดทุกดวง!
+      </p>
+    </div>
+
+    <button 
+      id="themeToggleBtn" 
+      type="button" 
+      class="p-2 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500"
+      aria-label="สลับโหมด">
+      <span id="themeIcon" class="text-xl">🌙</span>
+    </button>
+  </header>
+
+  <!-- พื้นที่หลัก (Main) -->
+  <main class="w-full max-w-lg mx-auto p-4 flex-grow flex flex-col items-center gap-6">
+
+    <section class="w-full bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col gap-3">
+      <div class="flex justify-between items-center text-sm font-bold">
+        <span>จำนวนครั้งที่กด: <span id="movesDisplay" class="text-amber-600 dark:text-amber-400 text-lg">0</span></span>
+      </div>
+      
+      <div class="flex gap-2 w-full">
+        <button onclick="setLevel(3)" id="btn3x3" class="flex-1 py-2 text-sm font-bold rounded-lg transition-colors focus:outline-none">3x3 (ง่าย)</button>
+        <button onclick="setLevel(4)" id="btn4x4" class="flex-1 py-2 text-sm font-bold rounded-lg transition-colors focus:outline-none">4x4 (ปานกลาง)</button>
+        <button onclick="setLevel(5)" id="btn5x5" class="flex-1 py-2 text-sm font-bold rounded-lg transition-colors focus:outline-none">5x5 (ยาก)</button>
+      </div>
+    </section>
+
+    <div id="statusMessage" class="text-sm font-bold px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-700 text-center w-full min-h-[40px] flex items-center justify-center transition-colors">
+      พยายามปิดไฟให้หมดทุกดวง!
+    </div>
+
+    <!-- กระดานเกม -->
+    <section class="w-full aspect-square max-w-[400px] mx-auto bg-slate-300 dark:bg-slate-800 p-2 sm:p-3 rounded-xl shadow-inner border-2 border-slate-400 dark:border-slate-700">
+      <div id="gameBoard" class="grid gap-2 w-full h-full">
+        <!-- ไอคอนหลอดไฟ 💡 และ 🔌 จะถูกสร้างผ่าน JavaScript -->
+      </div>
+    </section>
+
+    <!-- ปุ่มควบคุม -->
+    <section class="flex gap-4 w-full justify-center">
+      <button 
+        onclick="initGame()" 
+        class="px-6 py-3 rounded-xl text-sm font-bold text-slate-800 bg-amber-400 hover:bg-amber-500 shadow-lg transition-colors focus:outline-none focus:ring-4 focus:ring-amber-300">
+        🔄 เริ่มเกมใหม่
+      </button>
+      <button 
+        onclick="document.getElementById('rulesModal').showModal()" 
+        class="px-6 py-3 rounded-xl text-sm font-bold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 border border-slate-300 dark:border-slate-600 transition-colors focus:outline-none focus:ring-4 focus:ring-slate-300 dark:focus:ring-slate-800">
+        📖 วิธีเล่น
+      </button>
+    </section>
+
+  </main>
+
+  <!-- หน้าต่างวิธีเล่น -->
+  <dialog id="rulesModal" class="p-0 rounded-2xl backdrop:bg-slate-900/70 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 max-w-sm w-11/12 shadow-2xl border border-slate-200 dark:border-slate-700">
+    <div class="p-6">
+      <h2 class="text-xl font-black text-amber-500 mb-3">📖 วิธีเล่น Lights Out</h2>
+      <ul class="list-disc list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300">
+        <li>เปลี่ยนไฟสว่าง <strong>💡 (เปิด)</strong> ให้กลายเป็นปลั๊กดับ <strong>🔌 (ปิด)</strong> ให้หมด</li>
+        <li>เมื่อคุณคลิกที่ไฟดวงใดดวงหนึ่ง มันจะ <strong>สลับสถานะเปิด/ปิด</strong></li>
+        <li><strong>ข้อควรระวัง:</strong> ไฟที่อยู่ติดกัน (บน, ล่าง, ซ้าย, ขวา) จะสลับสถานะตามไปด้วย!</li>
+        <li>พยายามใช้จำนวนครั้งในการกดให้น้อยที่สุด</li>
+      </ul>
+      <button onclick="document.getElementById('rulesModal').close()" class="mt-6 w-full py-2 bg-amber-500 text-slate-900 font-bold rounded-lg shadow hover:bg-amber-600">เข้าใจแล้ว ลุย!</button>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
