@@ -1,0 +1,117 @@
+{
+  "info": {
+    "name": "Postman Lab - JSONPlaceholder",
+    "description": "Assignment Postman 3 ข้อ: PUT, DELETE และ GET หลัง DELETE (JSONPlaceholder / โพสต์ id = 2)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": { "type": "noauth" },
+  "item": [
+    {
+      "name": "04-Assignment",
+      "auth": { "type": "noauth" },
+      "item": [
+        {
+          "name": "01 PUT update post 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Updated post matches my body\", () => {",
+                  "  const data = pm.response.json();",
+                  "  pm.expect(data.id).to.eql(2);",
+                  "  pm.expect(data.title).to.eql(\"Updated by Bestt5678\");",
+                  "  pm.expect(data.body).to.eql(\"My assignment update\");",
+                  "  pm.expect(data.userId).to.eql(1);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 2,\n  \"title\": \"Updated by Bestt5678\",\n  \"body\": \"My assignment update\",\n  \"userId\": 1\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts/2",
+              "protocol": "https",
+              "host": ["jsonplaceholder", "typicode", "com"],
+              "path": ["posts", "2"]
+            }
+          }
+        },
+        {
+          "name": "02 DELETE post 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Delete response is empty\", () => {",
+                  "  pm.expect(pm.response.json()).to.deep.eql({});",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts/2",
+              "protocol": "https",
+              "host": ["jsonplaceholder", "typicode", "com"],
+              "path": ["posts", "2"]
+            }
+          }
+        },
+        {
+          "name": "03 GET after delete",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Post 2 still exists\", () => {",
+                  "  pm.expect(pm.response.json().id).to.eql(2);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts/2",
+              "protocol": "https",
+              "host": ["jsonplaceholder", "typicode", "com"],
+              "path": ["posts", "2"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
