@@ -1,0 +1,196 @@
+{
+  "created": "2026-11-17T06:55:13.071835+07:00",
+  "python": "3.12.10",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "selenium": "4.51.0",
+  "browser": "chrome",
+  "browser_version": "157.0.8103.51",
+  "counts": {
+    "PASS": 16,
+    "EXPECTED_FAIL": 2
+  },
+  "results": [
+    {
+      "lab": 1,
+      "case": "page_title",
+      "expected": "CE Course Registration",
+      "actual": "CE Course Registration",
+      "status": "PASS",
+      "detail": "Observed behavior matches the test.",
+      "seconds": 0.121,
+      "screenshot": "01_page_title.png"
+    },
+    {
+      "lab": 1,
+      "case": "by_id",
+      "expected": "input",
+      "actual": "input",
+      "status": "PASS",
+      "detail": "Observed behavior matches the test.",
+      "seconds": 0.031,
+      "screenshot": "02_by_id.png"
+    },
+    {
+      "lab": 1,
+      "case": "by_name",
+      "expected": "input",
+      "actual": "input",
+      "status": "PASS",
+      "detail": "Observed behavior matches the test.",
+      "seconds": 0.029,
+      "screenshot": "03_by_name.png"
+    },
+    {
+      "lab": 1,
+      "case": "by_css",
+      "expected": "button",
+      "actual": "button",
+      "status": "PASS",
+      "detail": "Observed behavior matches the test.",
+      "seconds": 0.031,
+      "screenshot": "04_by_css.png"
+    },
+    {
+      "lab": 1,
+      "case": "by_xpath",
+      "expected": "h1",
+      "actual": "h1",
+      "status": "PASS",
+      "detail": "Observed behavior matches the test.",
+      "seconds": 0.029,
+      "screenshot": "05_by_xpath.png"
+    },
+    {
+      "lab": 2,
+      "case": "valid_form",
+      "expected": "REGISTERED",
+      "actual": "REGISTERED",
+      "status": "PASS",
+      "detail": "Observed behavior matches the test.",
+      "seconds": 0.66,
+      "screenshot": "06_valid_form.png"
+    },
+    {
+      "lab": 2,
+      "case": "blank_name",
+      "expected": "NAME_REQUIRED",
+      "actual": "NAME_REQUIRED",
+      "status": "PASS",
+      "detail": "Observed behavior matches the test.",
+      "seconds": 0.643,
+      "screenshot": "07_blank_name.png"
+    },
+    {
+      "lab": 2,
+      "case": "missing_consent",
+      "expected": "CONSENT_REQUIRED",
+      "actual": "CONSENT_REQUIRED",
+      "status": "PASS",
+      "detail": "Observed behavior matches the test.",
+      "seconds": 0.624,
+      "screenshot": "08_missing_consent.png"
+    },
+    {
+      "lab": 3,
+      "case": "immediate_lookup",
+      "expected": "",
+      "actual": "",
+      "status": "EXPECTED_FAIL",
+      "detail": "EarlyLookupFailure: The course-ready element is not in the DOM yet (NoSuchElementException).",
+      "trace": "09_immediate_lookup_trace.txt",
+      "seconds": 0.05,
+      "screenshot": "09_immediate_lookup.png"
+    },
+    {
+      "lab": 3,
+      "case": "explicit_wait",
+      "expected": "COURSE_READY",
+      "actual": "COURSE_READY",
+      "status": "PASS",
+      "detail": "Observed behavior matches the test.",
+      "seconds": 3.08,
+      "screenshot": "10_explicit_wait.png"
+    },
+    {
+      "lab": 4,
+      "case": "credits_4_buggy",
+      "expected": "CREDITS_OUT_OF_RANGE",
+      "actual": "REGISTERED",
+      "status": "EXPECTED_FAIL",
+      "detail": "ComparisonFailure: expected='CREDITS_OUT_OF_RANGE'; actual='REGISTERED'",
+      "trace": "11_credits_4_buggy_trace.txt",
+      "seconds": 0.642,
+      "screenshot": "11_credits_4_buggy.png"
+    },
+    {
+      "lab": 4,
+      "case": "credits_4_fixed",
+      "expected": "CREDITS_OUT_OF_RANGE",
+      "actual": "CREDITS_OUT_OF_RANGE",
+      "status": "PASS",
+      "detail": "Observed behavior matches the test.",
+      "seconds": 0.651,
+      "screenshot": "12_credits_4_fixed.png"
+    },
+    {
+      "lab": 4,
+      "case": "credits_4_refactored",
+      "expected": "CREDITS_OUT_OF_RANGE",
+      "actual": "CREDITS_OUT_OF_RANGE",
+      "status": "PASS",
+      "detail": "Observed behavior matches the test.",
+      "seconds": 0.656,
+      "screenshot": "13_credits_4_refactored.png"
+    },
+    {
+      "lab": 5,
+      "case": "boundary_0",
+      "expected": "CREDITS_OUT_OF_RANGE",
+      "actual": "CREDITS_OUT_OF_RANGE",
+      "status": "PASS",
+      "detail": "Observed behavior matches the test.",
+      "seconds": 0.671,
+      "screenshot": "14_boundary_0.png"
+    },
+    {
+      "lab": 5,
+      "case": "minimum_1",
+      "expected": "REGISTERED",
+      "actual": "REGISTERED",
+      "status": "PASS",
+      "detail": "Observed behavior matches the test.",
+      "seconds": 0.668,
+      "screenshot": "15_minimum_1.png"
+    },
+    {
+      "lab": 5,
+      "case": "middle_2",
+      "expected": "REGISTERED",
+      "actual": "REGISTERED",
+      "status": "PASS",
+      "detail": "Observed behavior matches the test.",
+      "seconds": 0.652,
+      "screenshot": "16_middle_2.png"
+    },
+    {
+      "lab": 5,
+      "case": "maximum_3",
+      "expected": "REGISTERED",
+      "actual": "REGISTERED",
+      "status": "PASS",
+      "detail": "Observed behavior matches the test.",
+      "seconds": 0.647,
+      "screenshot": "17_maximum_3.png"
+    },
+    {
+      "lab": 5,
+      "case": "boundary_4",
+      "expected": "CREDITS_OUT_OF_RANGE",
+      "actual": "CREDITS_OUT_OF_RANGE",
+      "status": "PASS",
+      "detail": "Observed behavior matches the test.",
+      "seconds": 0.65,
+      "screenshot": "18_boundary_4.png"
+    }
+  ]
+}
